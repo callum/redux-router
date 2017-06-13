@@ -1,5 +1,5 @@
 import { replace } from './actions'
-import { NAVIGATE } from './constants'
+import { NAVIGATE, REPLACE } from './constants'
 
 export default class History {
   constructor (store) {
@@ -25,6 +25,8 @@ export default class History {
       } else {
         this.replaceHref(action.href)
       }
+    } else if (action.type === REPLACE) {
+      this.replaceHref(action.href)
     }
   }
 
