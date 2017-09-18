@@ -1,5 +1,5 @@
 import test from 'tape'
-import { NAVIGATE } from '../src/constants'
+import { NAVIGATE, REPLACE } from '../src/constants'
 import History from '../src/History'
 
 test('popstate listener', t => {
@@ -20,11 +20,11 @@ test('push or replace on navigate', t => {
   t.plan(2)
 
   const history = new History()
-  history.getCurrentHref = () => '/foo'
+  history.getCurrentHref = () => '/'
   history.replaceHref = href => t.equal(href, '/foo')
   history.pushHref = href => t.equal(href, '/foo/bar')
 
-  history.update({ type: NAVIGATE, href: '/foo' })
+  history.update({ type: REPLACE, href: '/foo' })
   history.update({ type: NAVIGATE, href: '/foo/bar' })
 })
 
